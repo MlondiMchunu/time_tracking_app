@@ -18,6 +18,7 @@ class TimersDashboard extends React.Component {
       {
         title: 'Learn NodeJS',
         project: 'Back End',
+        id: uuid.v4(),
         elapse: 234546,
         runningSince: null,
       }
@@ -60,10 +61,15 @@ class TimersDashboard extends React.Component {
   }
   
   class EditableTimer extends React.Component {
+    /*Adding state to EditableTimer */
+    state = {
+      editFormOpen : false,
+    }
     render() {
-      if (this.props.editFormOpen) {
+      if (this.state.editFormOpen) {
         return (
           <TimerForm
+            id = {this.props.id}
             title={this.props.title}
             project={this.props.project}
           />
@@ -71,6 +77,7 @@ class TimersDashboard extends React.Component {
       } else {
         return (
           <Timer
+            id = {this.props.id}
             title={this.props.title}
             project={this.props.project}
             elapsed={this.props.elapsed}
