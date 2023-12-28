@@ -61,10 +61,9 @@ class TimersDashboard extends React.Component {
   }
   
   class EditableTimer extends React.Component {
-    /*Adding state to EditableTimer */
     state = {
       editFormOpen : false,
-    }
+    };
     render() {
       if (this.state.editFormOpen) {
         return (
@@ -154,8 +153,13 @@ class TimersDashboard extends React.Component {
 
     
   class ToggleableTimerForm extends React.Component {
+    state = {
+      isOpen : false,
+    };
+
+
     render() {
-      if (this.props.isOpen) {
+      if (this.state.isOpen) {
         return (
           <TimerForm />
         );
