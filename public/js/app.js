@@ -1,59 +1,61 @@
 
-/*
-  eslint-disable react/prefer-stateless-function, react/jsx-boolean-value,
-  no-undef, jsx-a11y/label-has-for
+/* Commit this 
+*as
+*hard-code initial states
 */
 class TimersDashboard extends React.Component {
+/*Adding State 
+*to TimersDashBoard */
+  state = {
+    timers:[
+      {
+        title: 'Learn React',
+        project: 'Front End',
+        id: uuid.v4(),
+        elapsed: 565327,
+        runningSince: Date.now(),
+      },
+      {
+        title: 'Learn NodeJS',
+        project: 'Back End',
+        elapse: 234546,
+        runningSince: null,
+      }
+    ],
+  };
     render() {
       return (
         <div className='ui three column centered grid'>
           <div className='column'>
-            <EditableTimerList />
+            <EditableTimerList
+              timers = {this.state.timers}
+            />
             <ToggleableTimerForm
-              isOpen={true}
+              isOpen={false}
             />
           </div>
         </div>
       );
     }
   }
-  
-  class ToggleableTimerForm extends React.Component {
-    render() {
-      if (this.props.isOpen) {
-        return (
-          <TimerForm />
-        );
-      } else {
-        return (
-          <div className='ui basic content center aligned segment'>
-            <button className='ui basic button icon'>
-              <i className='plus icon' />
-            </button>
-          </div>
-        );
-      }
-    }
-  }
-  
+
   class EditableTimerList extends React.Component {
+
+  /*EditableTimerList receives the list of timers as a prop, timers*/
     render() {
+      const timers = this.props.timers.map((timer)=>(
+        <EditableTimer 
+           key = {timer.id}
+           id = {timer.id}
+           title = {timer.title}
+           project = {timer.project}
+           elapsed = {timer.elapsed}
+           runningSince = {timer.runningSince}
+        />
+      ));
       return (
         <div id='timers'>
-          <EditableTimer
-            title='Learn React'
-            project='Web Domination'
-            elapsed='8986300'
-            runningSince={null}
-            editFormOpen={false}
-          />
-          <EditableTimer
-            title='Learn extreme ironing'
-            project='World Domination'
-            elapsed='3890985'
-            runningSince={null}
-            editFormOpen={true}
-          />
+          {timers}
         </div>
       );
     }
@@ -142,6 +144,25 @@ class TimersDashboard extends React.Component {
           </div>
         </div>
       );
+    }
+  }
+
+    
+  class ToggleableTimerForm extends React.Component {
+    render() {
+      if (this.props.isOpen) {
+        return (
+          <TimerForm />
+        );
+      } else {
+        return (
+          <div className='ui basic content center aligned segment'>
+            <button className='ui basic button icon'>
+              <i className='plus icon' />
+            </button>
+          </div>
+        );
+      }
     }
   }
   
