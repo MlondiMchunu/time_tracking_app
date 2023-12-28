@@ -25,14 +25,12 @@ class TimersDashboard extends React.Component {
   };
     render() {
       return (
-        <div className='ui three column centered grid'>
+        <div className='ui three coentered grid'>
           <div className='column'>
             <EditableTimerList
               timers = {this.state.timers}
             />
-            <ToggleableTimerForm
-              isOpen={false}
-            />
+            <ToggleableTimerForm/>
           </div>
         </div>
       );
@@ -54,7 +52,7 @@ class TimersDashboard extends React.Component {
         />
       ));
       return (
-        <div id='timers'>
+        <div id='timers'> 
           {timers}
         </div>
       );
