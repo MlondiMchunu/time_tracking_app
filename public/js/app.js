@@ -121,6 +121,40 @@ class TimersDashboard extends React.Component {
     }
   }
   
+  class ToggleableTimerForm extends React.Component {
+    state = { 
+      isOpen : false,
+    };
+    
+    handleFormOpen=()=>{
+      this.setState({isOpen: true});
+    };
+
+    handleFormClose=()=>{
+      this.setState({isOpen: false});
+    };
+
+    handleFormSubmit=(timer)=>{
+      this.props.onFormSubmit(timer);
+      this.setState({isOpen: false});
+    };
+    
+    render() {
+      if (this.state.isOpen) {
+        return (
+          <TimerForm />
+        );
+      } else {
+        return (
+          <div className='ui basic content center aligned segment'>
+            <button className='ui basic button icon' onClick={this.handleFormOpen}>
+              <i className='plus icon' />
+            </button>
+          </div>
+        );
+      }
+    }
+  }
   class TimerForm extends React.Component {
 
     state = {
@@ -179,40 +213,7 @@ class TimersDashboard extends React.Component {
   }
 
     
-  class ToggleableTimerForm extends React.Component {
-    state = { 
-      isOpen : false,
-    };
-    
-    handleFormOpen=()=>{
-      this.setState({isOpen: true});
-    };
-
-    handleFormClose=()=>{
-      this.setState({isOpen: false});
-    };
-
-    handleFormSubmit=(timer)=>{
-      this.props.onFormSubmit(timer);
-      this.setState({isOpen: false});
-    };
-    
-    render() {
-      if (this.state.isOpen) {
-        return (
-          <TimerForm />
-        );
-      } else {
-        return (
-          <div className='ui basic content center aligned segment'>
-            <button className='ui basic button icon' onClick={this.handleFormOpen}>
-              <i className='plus icon' />
-            </button>
-          </div>
-        );
-      }
-    }
-  }
+  
   
   ReactDOM.render(
     <TimersDashboard />,
