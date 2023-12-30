@@ -1,8 +1,3 @@
-
-/* Commit this 
-*as
-*hard-code initial states
-*/
 class TimersDashboard extends React.Component {
 /*Adding State 
 *to TimersDashBoard */
@@ -35,7 +30,7 @@ class TimersDashboard extends React.Component {
       timers: this.state.timers.concat(t),
     });
   };
-  
+
     render() {
       return (
         <div className='ui three coentered grid'>
@@ -43,7 +38,9 @@ class TimersDashboard extends React.Component {
             <EditableTimerList
               timers = {this.state.timers}
             />
-            <ToggleableTimerForm/>
+            <ToggleableTimerForm
+              onFormSubmit = {this.handleCreateFormSubmit}
+            />
           </div>
         </div>
       );
@@ -188,8 +185,8 @@ class TimersDashboard extends React.Component {
     handleSubmit=()=>{
       this.props.onFormSubmit({
         id: this.props.id,
-        title: this.props.title,
-        project: this.props.project,
+        title: this.state.title,
+        project: this.state.project,
       });
     };
 
