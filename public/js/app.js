@@ -24,6 +24,18 @@ class TimersDashboard extends React.Component {
       }
     ],
   };
+
+  handleCreateFormSubmit =(timer)=>{
+    this.createTimer(timer);
+  };
+
+  createTimer = (timer)=>{
+    const t = helpers.newTimer(timer);
+    this.setState({
+      timers: this.state.timers.concat(t),
+    });
+  };
+  
     render() {
       return (
         <div className='ui three coentered grid'>
@@ -142,7 +154,10 @@ class TimersDashboard extends React.Component {
     render() {
       if (this.state.isOpen) {
         return (
-          <TimerForm />
+          <TimerForm 
+            onFormSubmit = {this.handleFormSubmit}
+            onFormClose = {this.handleFormClose}
+          />
         );
       } else {
         return (
