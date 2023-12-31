@@ -73,6 +73,26 @@ class TimersDashboard extends React.Component {
     state = {
       editFormOpen : false,
     };
+    handleEditClick=()=>{
+      this.openForm();
+    };
+    handleFormClose=()=>{
+      this.closeForm();
+    };
+
+    handleSubmit=(timer)=>{
+      this.props.onFormSubmit(timer);
+      this.closeForm();
+    };
+
+    closeForm=()=>{
+      this.setState({editFormOpen:false});
+    };
+
+    openForm=()=>{
+      this.setState({editFormOpen: true});
+    };
+    
     render() {
       if (this.state.editFormOpen) {
         return (
@@ -99,6 +119,7 @@ class TimersDashboard extends React.Component {
   class Timer extends React.Component {
     render() {
       const elapsedString = helpers.renderElapsedString(this.props.elapsed);
+
       return (
         <div className='ui centered card'>
           <div className='content'>
